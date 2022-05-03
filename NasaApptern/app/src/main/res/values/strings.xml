@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Nasa Apptern</string>
+    <string name="title">Apptern Application</string>
+    <string name="curiosity">CURIOSITY</string>
+    <string name="opportunity">OPPORTUNITY</string>
+    <string name="spirit">SPIRIT</string>
+    <string name="exit">EXIT</string>
+    <string name="earth_date">Earth Date</string>
+    <string name="rover_name">Rover Name</string>
+    <string name="camera_name">Camera Name</string>
+    <string name="status">Status</string>
+    <string name="launch">Launch</string>
+    <string name="land">Land</string>
+    <string name="fhaz">FHAZ</string>
+    <string name="rhaz">RHAZ</string>
+    <string name="mast">MAST</string>
+    <string name="chemcam">CHEMCAM</string>
+    <string name="mardi">MARDI</string>
+    <string name="navcam">NAVCAM</string>
+    <string name="pancam">PANCAM</string>
+    <string name="minites">MINITES</string>
+    <string name="mahli">MAHLI</string>
+</resources>
