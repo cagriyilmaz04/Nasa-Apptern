@@ -54,6 +54,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTabReselected(tab: TabLayout.Tab?) {
+                tab?.let {
+                    setRecyclerAdapter(it.text.toString())
+                    currentTab=it.text.toString()
+                }
 
             }
         })
@@ -96,78 +100,78 @@ class MainActivity : AppCompatActivity() {
         if(nasaData.size==0){
             binding.tvError.visibility= View.VISIBLE
         }else{
-
+            nasaFilter.removeAll(nasaFilter)
             binding.tvError.visibility=View.INVISIBLE
             when(cameraName){
                 getString(R.string.curiosity)->{
                     nasaFilter=nasaData.filter {
-                        it.camera!!.name.equals("FHAZ") ||
-                                it.camera!!.name.equals("RHAZ") ||
-                                it.camera!!.name.equals("MAST") ||
-                                it.camera!!.name.equals("CHEMCAM") ||
-                                it.camera!!.name.equals("MAHLI") ||
-                                it.camera!!.name.equals("NAVCAM")
+                        it.camera!!.name.equals(getString(R.string.fhaz)) ||
+                                it.camera!!.name.equals(getString(R.string.rhaz)) ||
+                                it.camera!!.name.equals(getString(R.string.mast)) ||
+                                it.camera!!.name.equals(getString(R.string.chemcam)) ||
+                                it.camera!!.name.equals(getString(R.string.mahli)) ||
+                                it.camera!!.name.equals(getString(R.string.navcam))
                     } as java.util.ArrayList<Photo>
                 }
                 getString(R.string.spirit) ->{
                     nasaFilter=nasaData.filter {
-                        it.camera!!.name.equals("FHAZ")   ||
-                                it.camera!!.name.equals("RHAZ")   ||
-                                it.camera!!.name.equals("NAVCAM") ||
-                                it.camera!!.name.equals("PANCAM") ||
-                                it.camera!!.name.equals("MINITES")
+                        it.camera!!.name.equals(getString(R.string.fhaz))   ||
+                                it.camera!!.name.equals(getString(R.string.rhaz))   ||
+                                it.camera!!.name.equals(getString(R.string.navcam)) ||
+                                it.camera!!.name.equals(getString(R.string.pancam)) ||
+                                it.camera!!.name.equals(getString(R.string.minites))
 
                     } as java.util.ArrayList<Photo>
                 }
                 getString(R.string.opportunity)->{
                     nasaFilter=nasaData.filter {
-                        it.camera!!.name.equals("FHAZ") ||
-                                it.camera!!.name.equals("RHAZ") ||
-                                it.camera!!.name.equals("NAVCAM") ||
-                                it.camera!!.name.equals("PANCAM") ||
-                                it.camera!!.name.equals("MINITES")
+                        it.camera!!.name.equals(getString(R.string.fhaz)) ||
+                                it.camera!!.name.equals(getString(R.string.rhaz)) ||
+                                it.camera!!.name.equals(getString(R.string.navcam)) ||
+                                it.camera!!.name.equals(getString(R.string.pancam)) ||
+                                it.camera!!.name.equals(getString(R.string.minites))
                     } as java.util.ArrayList<Photo>
 
                 }
                 getString(R.string.fhaz)->{
                     nasaFilter=nasaData.filter {
-                        it.camera!!.name.equals("FHAZ")
+                        it.camera!!.name.equals(getString(R.string.fhaz))
                     } as java.util.ArrayList<Photo>
                 }
                 getString(R.string.rhaz)->{
                     nasaFilter=nasaData.filter {
-                        it.camera!!.name.equals("RHAZ")
+                        it.camera!!.name.equals(getString(R.string.rhaz))
                     } as java.util.ArrayList<Photo>
                 }
                 getString(R.string.mast)->{
                     nasaFilter=nasaData.filter {
-                        it.camera!!.name.equals("MAST")
+                        it.camera!!.name.equals(getString(R.string.mast))
                     } as java.util.ArrayList<Photo>
                 }
                 getString(R.string.chemcam)->{
                     nasaFilter=nasaData.filter {
-                        it.camera!!.name.equals("CHEMCAM")
+                        it.camera!!.name.equals(getString(R.string.chemcam))
                     } as java.util.ArrayList<Photo>
                 }
                 getString(R.string.mardi)->{
                     nasaFilter=nasaData.filter {
-                        it.camera!!.name.equals("MARDI")
+                        it.camera!!.name.equals(getString(R.string.mardi))
                     } as java.util.ArrayList<Photo>
                 }
 
                 getString(R.string.navcam)->{
                     nasaFilter=nasaData.filter {
-                        it.camera!!.name.equals("NAVCAM")
+                        it.camera!!.name.equals(getString(R.string.navcam))
                     } as java.util.ArrayList<Photo>
                 }
                 getString(R.string.pancam)->{
                     nasaFilter=nasaData.filter {
-                        it.camera!!.name.equals("PANCAM")
+                        it.camera!!.name.equals(getString(R.string.pancam))
                     } as java.util.ArrayList<Photo>
                 }
                 getString(R.string.minites)->{
                     nasaFilter=nasaData.filter {
-                        it.camera!!.name.equals("MINITES")
+                        it.camera!!.name.equals(getString(R.string.minites))
                     } as java.util.ArrayList<Photo>
                 }
             }
@@ -246,7 +250,6 @@ class MainActivity : AppCompatActivity() {
         for(i in nasaFilter){
             pictureUrl.add(i.img_src!!)
         }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -255,6 +258,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        nasaFilter.removeAll(nasaFilter)
         when(item.itemId){
             R.id.fhaz ->{
              setRecyclerAdapter(getString(R.string.fhaz))
@@ -291,6 +295,5 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-
+    
 }
