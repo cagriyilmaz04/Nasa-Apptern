@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     var nasaFilter=ArrayList<Photo>()
     var pictureUrl=ArrayList<String>()
     var tempDataHolder=ArrayList<Photo>()
+    var filter=ArrayList<Photo>()
     var currentTab:String="CURIOSITY"
     private lateinit var viewModel:MainViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -100,8 +101,10 @@ class MainActivity : AppCompatActivity() {
         if(nasaData.size==0){
             binding.tvError.visibility= View.VISIBLE
         }else{
-            nasaFilter.removeAll(nasaFilter)
             binding.tvError.visibility=View.INVISIBLE
+
+
+
             when(cameraName){
                 getString(R.string.curiosity)->{
                     nasaFilter=nasaData.filter {
@@ -133,48 +136,54 @@ class MainActivity : AppCompatActivity() {
                     } as java.util.ArrayList<Photo>
 
                 }
+
+            }
+            Toast.makeText(applicationContext,nasaFilter.size.toString()+" Anan",Toast.LENGTH_LONG).show()
+            when(cameraName){
                 getString(R.string.fhaz)->{
-                    nasaFilter=nasaData.filter {
+                    nasaFilter=nasaFilter.filter {
                         it.camera!!.name.equals(getString(R.string.fhaz))
                     } as java.util.ArrayList<Photo>
                 }
                 getString(R.string.rhaz)->{
-                    nasaFilter=nasaData.filter {
+                    nasaFilter=nasaFilter.filter {
                         it.camera!!.name.equals(getString(R.string.rhaz))
                     } as java.util.ArrayList<Photo>
                 }
                 getString(R.string.mast)->{
-                    nasaFilter=nasaData.filter {
+                    nasaFilter=nasaFilter.filter {
                         it.camera!!.name.equals(getString(R.string.mast))
                     } as java.util.ArrayList<Photo>
                 }
                 getString(R.string.chemcam)->{
-                    nasaFilter=nasaData.filter {
+                    nasaFilter=nasaFilter.filter {
                         it.camera!!.name.equals(getString(R.string.chemcam))
                     } as java.util.ArrayList<Photo>
                 }
                 getString(R.string.mardi)->{
-                    nasaFilter=nasaData.filter {
+                    nasaFilter=nasaFilter.filter {
                         it.camera!!.name.equals(getString(R.string.mardi))
                     } as java.util.ArrayList<Photo>
                 }
 
                 getString(R.string.navcam)->{
-                    nasaFilter=nasaData.filter {
+                    nasaFilter=nasaFilter.filter {
                         it.camera!!.name.equals(getString(R.string.navcam))
                     } as java.util.ArrayList<Photo>
                 }
                 getString(R.string.pancam)->{
-                    nasaFilter=nasaData.filter {
+                    nasaFilter=nasaFilter.filter {
                         it.camera!!.name.equals(getString(R.string.pancam))
                     } as java.util.ArrayList<Photo>
                 }
                 getString(R.string.minites)->{
-                    nasaFilter=nasaData.filter {
+                    nasaFilter=nasaFilter.filter {
                         it.camera!!.name.equals(getString(R.string.minites))
                     } as java.util.ArrayList<Photo>
                 }
+
             }
+
             convertToStringList()
             if(pictureUrl.size==0){
                 binding.tvError.visibility= View.VISIBLE
@@ -258,7 +267,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        nasaFilter.removeAll(nasaFilter)
+      //  nasaFilter.removeAll(nasaFilter)
         when(item.itemId){
             R.id.fhaz ->{
              setRecyclerAdapter(getString(R.string.fhaz))
