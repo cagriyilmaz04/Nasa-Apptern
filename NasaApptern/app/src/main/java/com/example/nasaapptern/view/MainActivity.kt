@@ -138,7 +138,6 @@ class MainActivity : AppCompatActivity() {
                 }
 
             }
-            Toast.makeText(applicationContext,nasaFilter.size.toString()+" Anan",Toast.LENGTH_LONG).show()
             when(cameraName){
                 getString(R.string.fhaz)->{
                     nasaFilter=nasaFilter.filter {
